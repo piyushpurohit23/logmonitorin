@@ -11,13 +11,12 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>spark-listeners_3.1.1_2.12</artifactId>
     <name>${project.artifactId}</name>
-    
+    <version>1.0.0</version>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
-            
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
@@ -41,7 +40,7 @@
         <dependency>
             <groupId>org.scalatest</groupId>
             <artifactId>scalatest_2.12</artifactId>
-                <version>2.12</version>
+                <version>3.2.9</version>
         </dependency>
         <dependency>
             <groupId>org.scalatest</groupId>
