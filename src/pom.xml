@@ -410,7 +410,8 @@
                             <skip>true</skip>
                         </configuration>
                     </execution>
-                </plugin>
+                </executions>
+            </plugin>
 
             <!--<plugin>-->
                 <!--&lt;!&ndash; see http://davidb.github.com/scala-maven-plugin &ndash;&gt;-->
