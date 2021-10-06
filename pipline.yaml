@@ -38,8 +38,8 @@ steps:
     #goals: 'deploy -Dbuildversion=$(Build.BuildNumber) -X'
     goals: 'deploy'
 - script: |
-    mkdir distribution/deploy
+    mkdir -p distribution/deploy
 - task: PublishPipelineArtifact@1
   inputs: 
-    path: $(System.DefaultWorkingDirectory)/distribution/
+    path: ${maven.multiModuleProjectDirectory}/target
     artifact: dist
