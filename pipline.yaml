@@ -7,6 +7,7 @@ resources:
     name: piyushpurohit23/logmonitorin
     #ref: pp_796513_vmrg_devops
     ref: main
+    endpoint: github.com_piyushpurohit23
 
 pool:
   vmImage: 'ubuntu-18.04'
