@@ -41,7 +41,7 @@ jobs:
        persistCredentials: true
      - script: |
          cd build/scripts
-         printf "${BUILD_BUILDNUMBER}\nY\n" | bash  QC_warehouse_build.sh
+         printf "${BUILD_BUILDNUMBER}\nY\n" | bash  build.sh
        displayName: Package
      - task: PublishPipelineArtifact@1
        inputs:
