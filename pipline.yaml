@@ -13,24 +13,30 @@ resources:
 steps:
 - checkout: kube
 
-#stages:
-stage: build
-displayName: Build & Test
-jobs:
-  - job: build_test
-    displayName: Build Loggin-Monitoring jar
-    pool: 
+stages:
+  stage: build
+  displayName: Build & Test
+  jobs:
+    - job: build_test
+      displayName: Build Loggin-Monitoring jar
+      pool: 
        vmImage: 'ubuntu-18.04'
-    steps:
-    - checkout: self
-      submodules: recursive
-      clean: true
-      persistCredentials: true
-    - script: |
+      steps:
+      - checkout: self
+        submodules: recursive
+        clean: true
+        persistCredentials: true
+      - script: |
          #cd build/scripts
          printf "${BUILD_BUILDNUMBER}\nY\n" | bash  build.sh
-      displayName: Package
-    - task: PublishPipelineArtifact@1
-      inputs:
+        displayName: Package
+      - task: PublishPipelineArtifact@1
+        inputs:
         path: $(System.DefaultWorkingDirectory)/build/dist
         artifact: dist
+    - stage: build
+      displayName: Build & Test
+      jobs:
+      - job: build_test
+        displayName: Build QC Warehouse
+    
