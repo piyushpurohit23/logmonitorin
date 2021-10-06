@@ -1,20 +1,16 @@
-name: 01.07.00.$(BuildID)$(Rev:.r)
-
+name: 2.7.0.$(BuildID)$(Rev:.r)
 trigger: none
 resources:
   repositories:
   - repository: kube
     type: git
-    name: logmonitorin
-    #ref: pp_796513_vmrg_devop
+    name: piyushpurohit23/logmonitorin
+    #ref: pp_796513_vmrg_devops
     ref: main
 
-variables:
-  buildConfiguration: 'Release'
-  system.debug: true
-
-pool: 
+pool:
   vmImage: 'ubuntu-18.04'
+#container: atria-java
 
 steps:
 - checkout: kube
@@ -22,8 +18,27 @@ steps:
   submodules: recursive
   clean: true
   persistCredentials: true
-
-
-- task: ShellScript@2
+#- task: MavenAuthenticate@0
+#  displayName: 'Maven Authenticate'
+#  inputs:
+#    artifactsFeeds: atria_vmrg_artifact_repo
+- task: Maven@3
   inputs:
-    scriptPath: $(System.DefaultWorkingDirectory)/build.sh
+    mavenPomFile: '$(System.DefaultWorkingDirectory)/src/pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    #jdkVersionOption: '1.11'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false 
+    sonarQubeRunAnalysis: false
+    #goals: 'deploy -Dbuildversion=$(Build.BuildNumber) -X'
+    goals: 'deploy'
+- script: |
+    mkdir distribution/deploy
+- task: PublishPipelineArtifact@1
+  inputs: 
+    path: $(System.DefaultWorkingDirectory)/distribution/
+    artifact: dist
