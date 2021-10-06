@@ -14,23 +14,23 @@ pool:
 
 steps:
 - checkout: kube
-stages:
-  - stage: build
-    displayName: Build & Test
-    jobs:
-      - job: build_test
-        displayName: Build Loggin-Monitoring jar
-      - script: |
+#stages:
+#  - stage: build
+#    displayName: Build & Test
+  jobs:
+  - job: build_test
+  displayName: Build Loggin-Monitoring jar
+- script: |
          #cd build/scripts
          printf "${BUILD_BUILDNUMBER}\nY\n" | bash  build.sh
-        displayName: Package
-      - task: PublishPipelineArtifact@1
-        inputs:
-        path: $(System.DefaultWorkingDirectory)/build/dist
-        artifact: dist
-      - stage: build
-        displayName: Build & Test
-        jobs:
-      - job: build_test
-        displayName: Build QC Warehouse
+  displayName: Package
+- task: PublishPipelineArtifact@1
+  inputs:
+  path: $(System.DefaultWorkingDirectory)/build/dist
+  artifact: dist
+- stage: build
+  displayName: Build & Test
+  jobs:
+- job: build_test
+  displayName: Build QC Warehouse
     
