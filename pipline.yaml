@@ -15,8 +15,6 @@ pool:
 steps:
 - checkout: kube
 submodules: recursive
-clean: true
-persistCredentials: true
 
 stages:
   stage: build
