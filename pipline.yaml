@@ -14,8 +14,8 @@ pool:
 
 steps:
 - checkout: kube
-stages:
-  stage: build
+#stages:
+- stage: build
   displayName: Build & Test
   jobs:
     - job: build_test
