@@ -1,5 +1,13 @@
 name: 01.07.00.$(BuildID)$(Rev:.r)
 
+trigger: none
+resources:
+  repositories:
+  - repository: kube
+    type: git
+    name: logmonitorin
+    #ref: pp_796513_vmrg_devop
+    ref: main
 
 
 steps:
