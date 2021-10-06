@@ -3,7 +3,7 @@ trigger: none
 resources:
   repositories:
   - repository: kube
-    type: git
+    type: github
     name: piyushpurohit23/logmonitorin
     #ref: pp_796513_vmrg_devops
     ref: main
