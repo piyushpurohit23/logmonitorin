@@ -9,9 +9,14 @@ resources:
     #ref: pp_796513_vmrg_devop
     ref: main
 
+pool: 
+  vmImage: 'ubuntu-18.04'
 
 steps:
 - checkout: kube
+submodules: recursive
+clean: true
+persistCredentials: true
 
 stages:
   stage: build
@@ -19,19 +24,12 @@ stages:
   jobs:
     - job: build_test
       displayName: Build Loggin-Monitoring jar
-      pool: 
-       vmImage: 'ubuntu-18.04'
-      steps:
-      - checkout: self
-        submodules: recursive
-        clean: true
-        persistCredentials: true
-      - script: |
+    - script: |
          #cd build/scripts
          printf "${BUILD_BUILDNUMBER}\nY\n" | bash  build.sh
-        displayName: Package
-      - task: PublishPipelineArtifact@1
-        inputs:
+      displayName: Package
+    - task: PublishPipelineArtifact@1
+      inputs:
         path: $(System.DefaultWorkingDirectory)/build/dist
         artifact: dist
     - stage: build
