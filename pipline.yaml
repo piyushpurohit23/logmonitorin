@@ -41,5 +41,5 @@ steps:
     mkdir -p distribution/deploy
 - task: PublishPipelineArtifact@1
   inputs: 
-    path: ${maven.multiModuleProjectDirectory}/target
+    path: '$(System.DefaultWorkingDirectory)/src/target/'
     artifact: dist
