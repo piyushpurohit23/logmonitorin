@@ -9,6 +9,10 @@ resources:
     #ref: pp_796513_vmrg_devop
     ref: main
 
+variables:
+  buildConfiguration: 'Release'
+  system.debug: true
+
 pool: 
   vmImage: 'ubuntu-18.04'
 
@@ -19,23 +23,28 @@ steps:
   clean: true
   persistCredentials: true
 
+
+
 stages:
-  - stage: build
-    displayName: Build & Test
-    jobs:
-    - job: build_test
-      displayName: Build Loggin-Monitoring jar
-    - script: |
-         #cd build/scripts
-         printf "${BUILD_BUILDNUMBER}\nY\n" | bash  build.sh
-      displayName: Package
-    - task: PublishPipelineArtifact@1
-      inputs:
-      path: $(System.DefaultWorkingDirectory)/build/dist
-      artifact: dist
-    - stage: build
-      displayName: Build & Test
-      jobs:
-        - job: build_test
-          displayName: Build QC Warehouse
-    
+ - stage: build
+displayName: Build & Test
+jobs:
+   - job: build_test
+     displayName: Build QC Warehouse
+     pool: 
+       vmImage: 'ubuntu-18.04'
+     container: rpd-oracle-dev
+     steps:
+     - checkout: self
+       submodules: recursive
+       clean: true
+       persistCredentials: true
+     - script: |
+         cd build/scripts
+         printf "${BUILD_BUILDNUMBER}\nY\n" | bash  QC_warehouse_build.sh
+       displayName: Package
+     - task: PublishPipelineArtifact@1
+       inputs:
+         path: $(System.DefaultWorkingDirectory)/build/dist
+         artifact: dist
+  
