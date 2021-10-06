@@ -24,27 +24,6 @@ steps:
   persistCredentials: true
 
 
-
-stages:
-  - stage: build
-    displayName: Build & Test
-    jobs:
-    - job: build_test
-      displayName: Build QC Warehouse
-      pool: 
-       vmImage: 'ubuntu-18.04'
-      container: rpd-oracle-dev
-      steps:
-      - checkout: self
-        submodules: recursive
-        clean: true
-        persistCredentials: true
-      - script: |
-         cd build/scripts
-         printf "${BUILD_BUILDNUMBER}\nY\n" | bash  build.sh
-        displayName: Package
-      - task: PublishPipelineArtifact@1
-        inputs:
-         path: $(System.DefaultWorkingDirectory)/build/dist
-         artifact: dist
-  
+- task: ShellScript@2
+  inputs:
+    scriptPath: $(System.DefaultWorkingDirectory)/build.sh
