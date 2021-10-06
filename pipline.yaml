@@ -15,9 +15,9 @@ pool:
 steps:
 - checkout: kube
 stages:
-  - stage: build
-    displayName: Build & Test
-    jobs:
+  stage: build
+  displayName: Build & Test
+  jobs:
     - job: build_test
       displayName: Build Loggin-Monitoring jar
     - script: |
