@@ -39,10 +39,10 @@ steps:
     goals: 'deploy'
 - script: |
     mkdir -p distribution/deploy
-    
+    cp -r $(System.DefaultWorkingDirectory)/src/target/*.jar  distribution/deploy
 - task: PublishPipelineArtifact@1
   inputs: 
-    path: ${maven.multiModuleProjectDirectory}/target
+    path: '$(System.DefaultWorkingDirectory)/src/target/'
     artifact: dist
 - publish: distribution/deploy
   artifact: atria_fmdp_artifact_repo
