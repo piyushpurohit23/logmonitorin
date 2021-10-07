@@ -39,7 +39,7 @@ steps:
     goals: 'deploy'
 - script: |
     mkdir -p distribution/deploy
-    cp -r ${maven.multiModuleProjectDirectory}/target/*.jar  distribution/deploy
+    
 - task: PublishPipelineArtifact@1
   inputs: 
     path: ${maven.multiModuleProjectDirectory}/target
