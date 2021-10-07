@@ -19,10 +19,10 @@ steps:
   submodules: recursive
   clean: true
   persistCredentials: true
-#- task: MavenAuthenticate@0
-#  displayName: 'Maven Authenticate'
-#  inputs:
-#    artifactsFeeds: atria_vmrg_artifact_repo
+- task: MavenAuthenticate@0
+  displayName: 'Maven Authenticate'
+  inputs:
+    artifactsFeeds: atria_fmdp_artifact_repo
 - task: Maven@3
   inputs:
     mavenPomFile: '$(System.DefaultWorkingDirectory)/src/pom.xml'
@@ -41,7 +41,7 @@ steps:
     mkdir -p distribution/deploy
 - task: PublishPipelineArtifact@1
   inputs: 
-    path: ${maven.multiModuleProjectDirectory}/target
+    path: '$(System.DefaultWorkingDirectory)/src/target/'
     artifact: dist
 - publish: ${maven.multiModuleProjectDirectory}/target
   artifact: atria_fmdp_artifact_repo
