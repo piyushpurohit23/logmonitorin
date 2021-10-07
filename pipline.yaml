@@ -46,3 +46,7 @@ steps:
     artifact: dist
 - publish: distribution/deploy
   artifact: atria_fmdp_artifact_repo
+
+
+
+#  ${maven.multiModuleProjectDirectory}/target 
