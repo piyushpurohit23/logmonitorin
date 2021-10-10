@@ -22,7 +22,7 @@ steps:
 - task: MavenAuthenticate@0
   displayName: 'Maven Authenticate'
   inputs:
-    artifactsFeeds: atria_fmdp_artifact_repo
+    artifactsFeeds: Atria_kantarCommons
 - task: Maven@3
   inputs:
     mavenPomFile: '$(System.DefaultWorkingDirectory)/src/pom.xml'
@@ -32,7 +32,7 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
-    mavenAuthenticateFeed: false
+    mavenAuthenticateFeed: true
     effectivePomSkip: false 
     sonarQubeRunAnalysis: false
     #goals: 'deploy -Dbuildversion=$(Build.BuildNumber) -X'
@@ -45,7 +45,7 @@ steps:
     path: '$(System.DefaultWorkingDirectory)/src/target/'
     artifact: dist
 - publish: distribution/deploy
-  artifact: atria_fmdp_artifact_repo
+  artifact: Atria_kantarCommons
 
 
 
