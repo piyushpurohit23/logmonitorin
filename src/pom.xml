@@ -425,9 +425,9 @@
                 <executions>
                     <execution>
                         <id>default-deploy</id>
-                        <!-- <configuration>
+                         <configuration>
                             <skip>true</skip>
-                        </configuration> -->
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
