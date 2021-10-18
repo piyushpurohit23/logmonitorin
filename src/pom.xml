@@ -147,23 +147,23 @@
     </dependencies>
     <repositories>
         <repository>
-            <id>atria-kantarcommons</id>
-            <url>https://kantarware.pkgs.visualstudio.com/49c019b9-cd70-4b8b-8a7e-2b494df50904/_packaging/atria-kantarcommons/maven/v1</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+        <id>atria_fmdp_artifact_repo</id>
+        <url>https://kantarware.pkgs.visualstudio.com/49c019b9-cd70-4b8b-8a7e-2b494df50904/_packaging/atria_fmdp_artifact_repo/maven/v1</url>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+        <snapshots>
+            <enabled>true</enabled>
+        </snapshots>
+    </repository>
+</repositories>
 
-    <distributionManagement>
-        <repository>
-            <id>atria-kantarcommons</id>
-            <url>https://kantarware.pkgs.visualstudio.com/49c019b9-cd70-4b8b-8a7e-2b494df50904/_packaging/atria-kantarcommons/maven/v1</url>
-        </repository>
-    </distributionManagement>
+<distributionManagement>
+    <repository>
+        <id>atria_fmdp_artifact_repo</id>
+        <url>https://kantarware.pkgs.visualstudio.com/49c019b9-cd70-4b8b-8a7e-2b494df50904/_packaging/atria_fmdp_artifact_repo/maven/v1</url>
+    </repository>
+</distributionManagement>
     <build>
         <pluginManagement>
             <plugins>
