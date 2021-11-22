@@ -22,7 +22,9 @@ steps:
 - task: MavenAuthenticate@0
   displayName: 'Maven Authenticate'
   inputs:
-    artifactsFeeds: Atria_kantarCommons
+    #artifactsFeeds: Atria_kantarCommons
+    artifactsFeeds: fmdp_cloud_migration
+
 - task: Maven@3
   inputs:
     mavenPomFile: '$(System.DefaultWorkingDirectory)/src/pom.xml'
@@ -45,7 +47,7 @@ steps:
     path: '$(System.DefaultWorkingDirectory)/src/target/'
     artifact: dist
 - publish: distribution/deploy
-  artifact: Atria_kantarCommons
+  artifact: fmdp_cloud_migration
 
 
 
